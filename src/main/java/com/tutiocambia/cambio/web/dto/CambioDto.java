@@ -4,8 +4,10 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public class CambioDto {
-    private BigDecimal tipoCambio; 
-    private String moneda;
+    private BigDecimal tipoCambio;
+    private BigDecimal monto;
+    private String monedaOrigen;
+    private String monedaDestino;
 
 
     public CambioDto() {
@@ -13,8 +15,8 @@ public class CambioDto {
     }
 
 
-    public CambioDto(String moneda, BigDecimal tipoCambioDto) {
-        this.moneda = moneda;
+    public CambioDto(String monedaOrigen, BigDecimal tipoCambioDto) {
+        this.monedaOrigen = monedaOrigen;
         this.tipoCambio = tipoCambioDto;
     }
 
@@ -27,33 +29,59 @@ public class CambioDto {
     }
 
     public String getMoneda() {
-        return this.moneda;
+        return this.monedaOrigen;
     }
 
     public void setMoneda(String moneda) {
-        this.moneda = moneda;
+        this.monedaOrigen = moneda;
     }
+
+
+    public BigDecimal getMonto() {
+        return this.monto;
+    }
+
+    public void setMonto(BigDecimal monto) {
+        this.monto = monto;
+    }
+
+    public String getMonedaOrigen() {
+        return this.monedaOrigen;
+    }
+
+    public void setMonedaOrigen(String monedaOrigen) {
+        this.monedaOrigen = monedaOrigen;
+    }
+
+    public String getMonedaDestino() {
+        return this.monedaDestino;
+    }
+
+    public void setMonedaDestino(String monedaDestino) {
+        this.monedaDestino = monedaDestino;
+    }
+
 
     @Override
     public boolean equals(Object o) {
   
         if (this == o)
             return true;
-        if (!(o instanceof CambioDto))
+        if (!(o instanceof ActualizarCambioDto))
             return false;
 
         CambioDto cambioDto = (CambioDto) o;
-        return Objects.equals(this.moneda, cambioDto.moneda)
+        return Objects.equals(this.monedaOrigen, cambioDto.monedaOrigen)
             && Objects.equals(this.tipoCambio, cambioDto.tipoCambio);
     }
   
     @Override
     public int hashCode() {
-        return Objects.hash(this.moneda, this.tipoCambio);
+        return Objects.hash(this.monedaOrigen, this.tipoCambio);
     }
   
     @Override
     public String toString() {
-        return String.format("[%s,%s]", this.moneda, this.tipoCambio);
+        return String.format("[%s,%s]", this.monedaOrigen, this.tipoCambio);
     }
 }
