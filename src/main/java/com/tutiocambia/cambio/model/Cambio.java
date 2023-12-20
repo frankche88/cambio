@@ -1,6 +1,7 @@
 package com.tutiocambia.cambio.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Date;
 import java.util.Objects;
 
@@ -31,7 +32,7 @@ public class Cambio {
 
     public BigDecimal calcular(BigDecimal value) {
 
-        return value.multiply(tipoCambio).setScale(3);
+        return value.multiply(tipoCambio).setScale(3, RoundingMode.HALF_UP);
     }
 
 

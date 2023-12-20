@@ -3,10 +3,21 @@ package com.tutiocambia.cambio.web.dto;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class CambioDto {
     private BigDecimal tipoCambio;
+    
+    @NotNull(message = "monto: Campo requerido")
     private BigDecimal monto;
+    
+    @NotNull(message = "monedaOrigen: Campo requerido")
+    @NotBlank(message = "monedaOrigen: Campo requerido")
     private String monedaOrigen;
+    
+    @NotNull(message = "monedaDestino: Campo requerido")
+    @NotBlank(message = "monedaDestino: Campo requerido")
     private String monedaDestino;
 
 

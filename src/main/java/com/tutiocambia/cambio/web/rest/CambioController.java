@@ -2,12 +2,16 @@ package com.tutiocambia.cambio.web.rest;
 
 import java.math.BigDecimal;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tutiocambia.cambio.exceptions.CambioNotFoundException;
@@ -18,6 +22,7 @@ import com.tutiocambia.cambio.web.dto.ActualizarCambioDto;
 import com.tutiocambia.cambio.web.dto.CambioDto;
 
 @RestController
+@RequestMapping("/")
 public class CambioController {
     private final CambioRepository repository;
     private final TipoCambioService service;
@@ -29,8 +34,13 @@ public class CambioController {
       this.service = service;
     }
 
+    @GetMapping("/cambio")
+    public String getGetCambio() {
+        return "foobar";
+    }
+
     @PutMapping("/cambio/{id}")
-    Cambio actualizaTipoCambio(@RequestBody ActualizarCambioDto cambioDto, @PathVariable Long id) {
+    Cambio actualizaTipoCambio(@Valid @RequestBody ActualizarCambioDto cambioDto, @PathVariable Long id) {
 
       logger.info("Actualizando tipo de cambio moneda: {} monto: {}", cambioDto.getMoneda(), cambioDto.getTipoCambio());
     
@@ -45,7 +55,7 @@ public class CambioController {
     }
 
     @PostMapping("/cambio/calcular")
-    CambioDto calcularTipoCambio(@RequestBody CambioDto cambioDto) {
+    CambioDto calcularTipoCambio(@Valid @RequestBody CambioDto cambioDto) {
 
         logger.info("Calculando tipo cambio, moneda origen: {} moneda destino: {}  monto: {}", 
           cambioDto.getMonedaOrigen(), cambioDto.getMonedaDestino(), cambioDto.getMonto());
