@@ -12,11 +12,9 @@ public class CambioDto {
     @NotNull(message = "monto: Campo requerido")
     private BigDecimal monto;
     
-    @NotNull(message = "monedaOrigen: Campo requerido")
     @NotBlank(message = "monedaOrigen: Campo requerido")
     private String monedaOrigen;
     
-    @NotNull(message = "monedaDestino: Campo requerido")
     @NotBlank(message = "monedaDestino: Campo requerido")
     private String monedaDestino;
 

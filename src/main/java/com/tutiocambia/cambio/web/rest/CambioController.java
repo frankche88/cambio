@@ -40,13 +40,13 @@ public class CambioController {
     }
 
     @PutMapping("/cambio/{id}")
-    Cambio actualizaTipoCambio(@Valid @RequestBody ActualizarCambioDto cambioDto, @PathVariable Long id) {
+    Cambio actualizaTipoCambio(@Valid @RequestBody ActualizarCambioDto cambioDto, @PathVariable String id) {
 
-      logger.info("Actualizando tipo de cambio moneda: {} monto: {}", cambioDto.getMoneda(), cambioDto.getTipoCambio());
+      logger.info("Actualizando tipo de cambio moneda: {} monto: {}", id, cambioDto.getTipoCambio());
     
         return repository.findById(id)
           .map(cambio -> {
-              cambio.setMoneda(cambioDto.getMoneda());
+              cambio.setMoneda(id);
               cambio.setTipoCambio(cambioDto.getTipoCambio());
               return repository.save(cambio);
         }).orElseThrow(() -> 

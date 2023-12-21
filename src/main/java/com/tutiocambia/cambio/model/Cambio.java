@@ -6,15 +6,13 @@ import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Cambio {
 
-    private @Id @GeneratedValue Long id;
+    private @Id String moneda;
     private BigDecimal tipoCambio; 
-    private String moneda;
     private Date fechaModificcion;
 
 
@@ -33,15 +31,6 @@ public class Cambio {
     public BigDecimal calcular(BigDecimal value) {
 
         return value.multiply(tipoCambio).setScale(3, RoundingMode.HALF_UP);
-    }
-
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public BigDecimal getTipoCambio() {
@@ -77,18 +66,18 @@ public class Cambio {
             return false;
 
         Cambio cambio = (Cambio) o;
-        return Objects.equals(this.id, cambio.id) && Objects.equals(this.moneda, cambio.moneda)
+        return Objects.equals(this.moneda, cambio.moneda)
             && Objects.equals(this.tipoCambio, cambio.tipoCambio);
     }
   
     @Override
     public int hashCode() {
-        return Objects.hash(this.id, this.moneda, this.tipoCambio);
+        return Objects.hash(this.moneda, this.tipoCambio);
     }
   
     @Override
     public String toString() {
-        return String.format("[%d,%s,%s]", this.id, this.moneda, this.tipoCambio);
+        return String.format("[%s,%s]", this.moneda, this.tipoCambio);
     }
     
 }

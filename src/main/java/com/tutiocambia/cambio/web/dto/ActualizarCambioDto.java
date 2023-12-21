@@ -3,15 +3,11 @@ package com.tutiocambia.cambio.web.dto;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class ActualizarCambioDto {
     @NotNull(message = "tipoCambio: Campo requerido")
     private BigDecimal tipoCambio;
-    @NotNull(message = "moneda: Campo requerido")
-    @NotBlank(message = "moneda: Campo requerido")
-    private String moneda;
 
 
     public ActualizarCambioDto() {
@@ -19,8 +15,7 @@ public class ActualizarCambioDto {
     }
 
 
-    public ActualizarCambioDto(String moneda, BigDecimal tipoCambioDto) {
-        this.moneda = moneda;
+    public ActualizarCambioDto(BigDecimal tipoCambioDto) {
         this.tipoCambio = tipoCambioDto;
     }
 
@@ -32,14 +27,6 @@ public class ActualizarCambioDto {
         this.tipoCambio = tipoCambio;
     }
 
-    public String getMoneda() {
-        return this.moneda;
-    }
-
-    public void setMoneda(String moneda) {
-        this.moneda = moneda;
-    }
-
     @Override
     public boolean equals(Object o) {
   
@@ -49,17 +36,16 @@ public class ActualizarCambioDto {
             return false;
 
         ActualizarCambioDto cambioDto = (ActualizarCambioDto) o;
-        return Objects.equals(this.moneda, cambioDto.moneda)
-            && Objects.equals(this.tipoCambio, cambioDto.tipoCambio);
+        return Objects.equals(this.tipoCambio, cambioDto.tipoCambio);
     }
   
     @Override
     public int hashCode() {
-        return Objects.hash(this.moneda, this.tipoCambio);
+        return Objects.hash(this.tipoCambio);
     }
   
     @Override
     public String toString() {
-        return String.format("[%s,%s]", this.moneda, this.tipoCambio);
+        return String.format("[%s]", this.tipoCambio);
     }
 }
